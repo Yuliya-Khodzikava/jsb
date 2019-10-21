@@ -3,15 +3,14 @@ body {
 	background: #F5F5F5;
 }
 
-#dataset {
+.dataset {
 	width: 500px;
 	margin-bottom: 50px;
 	display: flex;
 	justify-content: space-around;
 }
 
-#addPoints, 
-#clearAllPoints {
+.btn {
 	width: 100px;
 	height: 25px;
 	border: 1px solid grey;
@@ -20,13 +19,13 @@ body {
 	border-radius: 30px;
 }
 
-#addPoints:hover {
+.addPoints:hover {
 	background: #9ACD32;
 	border: none;
 	color: white;
 }
 
-#clearAllPoints:hover {
+.clearAllPoints:hover {
 	background: #FF6347;
 	border: none;
 	color: white;
@@ -40,20 +39,20 @@ body {
 	cursor: pointer;
 }
 
-table {
+.tableContent {
 	width: 500px;
 	height: 30px;
 	border-collapse: collapse;
 	margin-bottom: 50px;
 }
 
-td {
+.table-data {
 	background: white;
 	border: 1px solid black;
 	text-align: center;
 	vertical-align: middle;
 }
 
-td:last-child{
+.table-data:last-child{
 	width: 70px;
 }
