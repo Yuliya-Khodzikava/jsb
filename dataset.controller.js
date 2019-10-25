@@ -1,37 +1,26 @@
 class DatasetController {
-    constructor(datasetView, datasetModel){
-        this.datasetView = datasetView;
-        this.datasetModel = datasetModel;
+    constructor(DatasetView, DatasetModel){
+        this.datasetView =  new DatasetView(targetSelector, {
+                                            clickAddPoints: this.clickAddPoints.bind(this),
+                                            clickDeletePoints: this.clickDeletePoints.bind(this),
+                                            clickClearAllPoints: this.clickClearAllPoints.bind(this)
+                                            });      
+        this.datasetModel = DatasetModel;
     }
 
-    initialize(){
-        this.datasetView.onClickAddPoints = this.onClickAddPoints.bind(this);
-        this.datasetView.onClickDeletePoints = this.onClickDeletePoints.bind(this);
-        this.datasetView.onClickClearAllPoints = this.onClickClearAllPoints.bind(this);
-    }
-
-    onClickAddPoints(){
-        const [xElement, yElement] = [document.querySelector('.x'), document.querySelector('.y')];
-    
-        this.datasetModel.setPoints(xElement, yElement);
+    clickAddPoints(xVal, yVal){
+        const isValid = isValidPoints(xVal, yVal);
+        if(isValid){
+            this.datasetModel.addPoints(xVal, yVal);
+        };
         this.datasetView.render(this.datasetModel.modelData);
     }
 
-    onClickDeletePoints(e){
-        let target = e.target;
-
-        if(target.className != 'deletePointBtn') return;
-    
-        const i = target.parentNode.parentNode.rowIndex;
-        targetElement.deleteRow(i);
-    
-        this.datasetModel.modelData.splice(i,1);
+    clickDeletePoints(index){
+        this.datasetModel.deletePoints(index);
     }
     
-    onClickClearAllPoints(){
-        while (targetElement.firstChild) { 
-            targetElement.removeChild(targetElement.firstChild);
-        } 
-        this.datasetModel.modelData = [];
+    clickClearAllPoints(){
+        this.datasetModel.clearAllPoints();
     }
 }

@@ -1,10 +1,19 @@
 class DatasetView {
-    constructor(element){
-        this.element = element;
-        this.onClickAddPoints = null;
-        this.wrapper = document.querySelector('.wrapper');
+    constructor(selector, handlers){
+        this.handlers = handlers;
+        this.element = document.querySelector(selector); //general wrapper
+        this.datasetForm = this.element.querySelector('.datasetForm'); //inputs
+        this.table = this.element.querySelector('.tableContent'); //table
         this.insertTemplate(this.prepareTemplate());
+        this.addBtn = this.element.querySelector('.addPoints');
+        this.clearAllBtn = this.element.querySelector('.clearAllPoints');
         this.prepareHandlers();
+        this.onDelete = this.onClickDeletePoints.bind(this);
+        this.onAdd = this.onClickAddPoints.bind(this);
+        this.onClearAll = this.onClickClearAllPoints.bind(this);
+        this.clickAddPoints = this.handlers.clickAddPoints;
+        this.clickDeletePoints = this.handlers.clickDeletePoints;
+        this.clickClearAllPoints = this.handlers.clickClearAllPoints;
     }
 
     prepareTemplate(){
@@ -15,25 +24,47 @@ class DatasetView {
                 '<button class="btn addPoints">Add</button>'+
             '</div>';
         return dataset;
-    };
+    }
+
     insertTemplate(value){
-        this.wrapper.innerHTML = value;
-    };
+        this.datasetForm.innerHTML = value;
+    }
+
+    onClickDeletePoints(e){
+        let target = e.target;
+        
+        const i = target.closest('tr').rowIndex;
+
+        if(target.className != 'deletePointBtn') return;
+        
+        this.table.deleteRow(i);
+        this.clickDeletePoints(i);
+    }
+
+    onClickAddPoints(){
+        const x = this.datasetForm.querySelector('.x');
+        const y = this.datasetForm.querySelector('.y');
+        const [enteredValueX, enteredValueY] = [x.value, y.value];
+        
+        this.clickAddPoints(enteredValueX, enteredValueY);
+    }
+
+    onClickClearAllPoints(){
+        while (this.table.firstChild) { 
+            this.table.removeChild(this.table.firstChild);
+        }
+        this.clickClearAllPoints();
+    }
+    
     prepareHandlers(){
-        const addPointsBtn = document.querySelector('.addPoints');
-        addPointsBtn.addEventListener('click', this.onClickAddPoints);
-
-        const deletePointsBtn = document.querySelector('.tableContent');
-        deletePointsBtn.addEventListener('click', this.onClickDeletePoints);
-
-        const clearAllPointsBtn = document.querySelector('.clearAllPoints');
-        clearAllPointsBtn.addEventListener('click', this.onClickClearAllPoints);
+        this.addBtn.addEventListener('click', this.onAdd);
+        this.table.addEventListener('click', this.onDelete);
+        this.clearAllBtn.addEventListener('click', this.onClearAll);
     };
 
     render(viewData){
         const [x, y] = [viewData[0] === undefined ? '' : viewData[viewData.length-1].x, 
                         viewData[0] === undefined ? '' : viewData[viewData.length-1].y];
-
         const template = 
             '<tr class="table-row">' +
                 '<td class="table-data">' + x + '</td>' +
@@ -41,7 +72,7 @@ class DatasetView {
                 '<td class="table-data"><button class="deletePointBtn">X</button></td>' +
             '</tr>';
 
-        viewData[0] ? this.element.insertAdjacentHTML('beforeEnd', template) : null;
+        viewData[0] ? this.table.insertAdjacentHTML('beforeEnd', template) : null;
         this.prepareHandlers();
     }
 }

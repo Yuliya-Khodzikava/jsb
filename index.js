@@ -1,7 +1,7 @@
+const targetSelector = '.main';
 const datasetModel = new DatasetModel();
-const targetElement = document.querySelector('.tableContent');
-const datasetView = new DatasetView(targetElement);
-const controller = new DatasetController(datasetView, datasetModel);
+const controller = new DatasetController(DatasetView, datasetModel);
+const chartController = new ChartController(ChartView, datasetModel);
 
-controller.initialize();
-controller.onClickAddPoints();
+controller.clickAddPoints('','');
+chartController.getChartPoints();

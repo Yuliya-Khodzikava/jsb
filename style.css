@@ -1,10 +1,13 @@
 body {
-	margin: 50px 0 50px 50px;
 	background: #F5F5F5;
+}
+.main {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px;
 }
 
 .dataset {
-	width: 500px;
 	margin-bottom: 50px;
 	display: flex;
 	justify-content: space-around;
@@ -55,4 +58,20 @@ body {
 
 .table-data:last-child{
 	width: 70px;
+}
+
+.chart {
+	width: 500px;
+	height: 500px;
+	background: white;
+	border: 1px solid red;
+	position: relative;
+}
+
+.point {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: black;
+	position: absolute;
 }
