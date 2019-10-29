@@ -35,7 +35,7 @@ class DatasetView {
         
         const i = target.closest('tr').rowIndex;
 
-        if(target.className != 'deletePointBtn') return;
+        if(target.className !== 'deletePointBtn') return;
         
         this.table.deleteRow(i);
         this.clickDeletePoints(i);
@@ -76,3 +76,5 @@ class DatasetView {
         this.prepareHandlers();
     }
 }
+
+module.exports = DatasetView

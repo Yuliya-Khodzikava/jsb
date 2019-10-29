@@ -2,8 +2,9 @@ body {
 	background: #F5F5F5;
 }
 .main {
+	width: 1050px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin: 50px;
 }
 

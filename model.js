@@ -4,10 +4,7 @@ class DatasetModel {
     }
 
     addPoints(xValue, yValue){
-        const isValid = isValidPoints(xValue, yValue);
-        if(isValid){
-            this.modelData.push({x: xValue, y: yValue});
-        }
+        this.modelData.push({x: xValue, y: yValue});
     };
 
     deletePoints(i){
@@ -22,3 +19,5 @@ class DatasetModel {
         return this.modelData;
     }
 }
+
+module.exports = DatasetModel
