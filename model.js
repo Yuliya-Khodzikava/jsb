@@ -14,10 +14,6 @@ class DatasetModel {
     clearAllPoints(){
         this.modelData = [];
     }
-
-    getChartPoints(){
-        return this.modelData;
-    }
 }
 
 module.exports = DatasetModel

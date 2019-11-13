@@ -9,7 +9,7 @@ class DatasetController {
     }
 
     clickAddPoints(xVal, yVal){
-        if(xVal !== '' && xVal>0 && yVal>0){
+        if(xVal !== '' && xVal>=0 && yVal>=0){
             this.datasetModel.addPoints(xVal, yVal);
         };
         this.datasetView.render(this.datasetModel.modelData);
