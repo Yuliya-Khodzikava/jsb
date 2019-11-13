@@ -1,0 +1,33 @@
+{
+  "name": "jsb",
+  "version": "1.0.0",
+  "description": "| Topic                           | Due date     |\r | ------------------------------- | ------------ |\r | Architecture and design pitches | October 10th |\r | Dataset management              | October 14th |\r | Chart management                | October 21st |\r | HTTP                            | October 24th |\r | Feature exchange                | October 31st |\r | Final                           | November 4th |",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuliya-Khodzikava/jsb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yuliya-Khodzikava/jsb/issues"
+  },
+  "homepage": "https://github.com/Yuliya-Khodzikava/jsb#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "globals": {
+      "targetSelector": ".main"
+    }
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
